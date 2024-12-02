@@ -19,12 +19,16 @@ fn main() {
 
     let mut count: u64 = 0;
 
-    for (i, l_value) in left.iter().enumerate() {
-        let r_value = right[i];
-        println!("{} {}", l_value, r_value);
-        count += l_value.abs_diff(r_value) as u64;
+    for l_value in left.iter() {
+        let mut match_count: u32 = 0;
+        for r_value in right.iter() {
+            if l_value == r_value {
+                println!("{} {}", l_value, r_value);
+                match_count += 1;
+            }
+        }
+        count += (l_value * match_count) as u64;
     }
+    println!("Total similarity: {count}");
 
-
-    println!("Total Distance: {count}");
 }
